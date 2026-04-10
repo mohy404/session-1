@@ -1,1214 +1,1368 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مقدمة في الكمبيوتر والتكنولوجيا</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
-      color: #2c3e50;
-      line-height: 1.8;
-      direction: rtl;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    h1 {
-      text-align: center;
-      font-size: 2.5em;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      margin-bottom: 30px;
-      animation: bounceIn 1s ease-out;
-    }
-    
-    @keyframes bounceIn {
-      0% { transform: scale(0.3); opacity: 0; }
-      50% { transform: scale(1.05); }
-      70% { transform: scale(0.9); }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    
-    h2 {
-      color: #2c3e50;
-      font-size: 1.8em;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    h2::before {
-      content: '';
-      width: 4px;
-      height: 30px;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      border-radius: 2px;
-    }
-    
-    .section {
-      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-      padding: 25px;
-      border-radius: 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      border: 3px solid transparent;
-      background-clip: padding-box;
-      position: relative;
-      overflow: hidden;
-      transform: translateY(20px);
-      opacity: 0;
-      animation: slideUp 0.6s ease-out forwards;
-    }
-    
-    .section:nth-child(2) { animation-delay: 0.1s; }
-    .section:nth-child(3) { animation-delay: 0.2s; }
-    .section:nth-child(4) { animation-delay: 0.3s; }
-    .section:nth-child(5) { animation-delay: 0.4s; }
-    .section:nth-child(6) { animation-delay: 0.5s; }
-    .section:nth-child(7) { animation-delay: 0.6s; }
-    
-    @keyframes slideUp {
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-    
-    .section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
-      background-size: 400% 400%;
-      animation: gradient 3s ease infinite;
-    }
-    
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    .section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-      transition: all 0.3s ease;
-    }
-    
-    p {
-      font-size: 1.1em;
-      margin-bottom: 15px;
-      text-align: justify;
-    }
-    
-    ul, ol {
-      padding-right: 20px;
-      margin-bottom: 15px;
-    }
-    
-    li {
-      margin-bottom: 8px;
-      position: relative;
-      padding-right: 10px;
-    }
-    
-    li::before {
-      content: '🌟';
-      position: absolute;
-      right: -15px;
-      top: 0;
-      animation: twinkle 2s infinite;
-    }
-    
-    @keyframes twinkle {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-    
-    .name {
-      font-weight: bold;
-      color: #e74c3c;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: 1.1em;
-    }
-    
-    .task {
-      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-      border: 2px solid #ff6b6b;
-      padding: 20px;
-      border-radius: 15px;
-      margin-top: 15px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .task::before {
-      content: '✨';
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 1.5em;
-      animation: rotate 2s linear infinite;
-    }
-    
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    
-    .task strong {
-      color: #e74c3c;
-      font-size: 1.2em;
-    }
-    
-    .highlight {
-      background: linear-gradient(45deg, #ffd700, #ffed4e);
-      padding: 2px 6px;
-      border-radius: 5px;
-      font-weight: bold;
-      color: #2c3e50;
-    }
-    
-    .story-box {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 20px;
-      border-radius: 15px;
-      margin: 15px 0;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    .story-box::before {
-      content: '📚';
-      font-size: 1.5em;
-      margin-left: 10px;
-    }
-    
-    .emoji-large {
-      font-size: 2em;
-      display: inline-block;
-      animation: bounce 2s infinite;
-    }
-    
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-10px); }
-      60% { transform: translateY(-5px); }
-    }
-    
-    .step-number {
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      color: white;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      margin-left: 10px;
-    }
-    
-    .binary-demo {
-      background: #2c3e50;
-      color: #00ff00;
-      padding: 15px;
-      border-radius: 10px;
-      font-family: 'Courier New', monospace;
-      font-size: 1.2em;
-      text-align: center;
-      margin: 15px 0;
-      box-shadow: inset 0 0 20px rgba(0,255,0,0.1);
-    }
-    
-    .pixel-art {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 1px solid #ccc;
-      margin: 1px;
-      background: #ff6b6b;
-      animation: pixelGlow 1.5s infinite alternate;
-    }
-    
-    @keyframes pixelGlow {
-      0% { box-shadow: 0 0 5px #ff6b6b; }
-      100% { box-shadow: 0 0 15px #ff6b6b, 0 0 25px #ff6b6b; }
-    }
-    
-    .interactive-button {
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      font-size: 1.1em;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    .interactive-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    }
-    
-    .fun-fact {
-      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
-      padding: 15px;
-      border-radius: 15px;
-      border-left: 5px solid #e17055;
-      margin: 15px 0;
-      font-weight: bold;
-    }
-    
-    .fun-fact::before {
-      content: '💡';
-      font-size: 1.5em;
-      margin-left: 10px;
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      body {
-        padding: 10px;
-      }
-      
-      h1 {
-        font-size: 2em;
-      }
-      
-      h2 {
-        font-size: 1.5em;
-      }
-      
-      .section {
-        padding: 20px;
-      }
-    }
-    
-    /* Fun animations for page load */
-    .floating {
-      animation: float 3s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    /* Final Challenge Styles */
-    .final-tasks {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin: 20px 0;
-    }
-    
-    .student-task {
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-      border: 3px solid #ff6b6b;
-      border-radius: 20px;
-      padding: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .student-task::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-      transform: rotate(45deg);
-      animation: shimmer 3s infinite;
-    }
-    
-    @keyframes shimmer {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
-    
-    .student-task:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-    }
-    
-    .student-task h3 {
-      color: #2c3e50;
-      font-size: 1.4em;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    
-    .task-content {
-      background: rgba(255,255,255,0.9);
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 15px;
-    }
-    
-    .binary-converter {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      margin-top: 15px;
-    }
-    
-    .binary-converter p {
-      color: white;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    
-    .converter-link {
-      display: inline-block;
-      background: linear-gradient(45deg, #ffd700, #ff6b6b);
-      color: white;
-      text-decoration: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    .converter-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-      background: linear-gradient(45deg, #ff6b6b, #ffd700);
-    }
-    
-    .challenge-instructions {
-      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-      padding: 25px;
-      border-radius: 20px;
-      margin: 30px 0;
-      border: 2px solid #4ecdc4;
-    }
-    
-    .challenge-instructions h3 {
-      text-align: center;
-      color: #2c3e50;
-      font-size: 1.5em;
-      margin-bottom: 20px;
-    }
-    
-    .instructions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-    }
-    
-    .instruction-card {
-      background: rgba(255,255,255,0.9);
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-    
-    .instruction-card:hover {
-      transform: translateY(-3px);
-      border-color: #4ecdc4;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-    
-    .instruction-card .step-number {
-      display: block;
-      margin: 0 auto 10px;
-      font-size: 1.2em;
-    }
-    
-    .final-message {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      margin-top: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    
-    .final-message p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
-    
-    .celebration-box {
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 15px;
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    
-    .celebration-box p {
-      font-size: 1.4em;
-      font-weight: bold;
-      margin: 0;
-    }
-    
-    /* Operating System Styles */
-    .importance-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin: 20px 0;
-    }
-    
-    .importance-card {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-    
-    .importance-card:hover {
-      transform: translateY(-5px);
-      border-color: #ffd700;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.25);
-    }
-    
-    .card-icon {
-      font-size: 3em;
-      margin-bottom: 10px;
-      display: block;
-    }
-    
-    .importance-card h4 {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-      color: #ffd700;
-    }
-    
-    .os-types {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin: 25px 0;
-    }
-    
-    .os-card {
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      transition: all 0.3s ease;
-      border: 3px solid transparent;
-    }
-    
-    .os-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-    }
-    
-    .os-card.windows {
-      background: linear-gradient(135deg, #0078d4 0%, #00bcf2 100%);
-    }
-    
-    .os-card.android {
-      background: linear-gradient(135deg, #3ddc84 0%, #00c851 100%);
-    }
-    
-    .os-card.ios {
-      background: linear-gradient(135deg, #007aff 0%, #5856d6 100%);
-    }
-    
-    .os-card.macos {
-      background: linear-gradient(135deg, #1c1c1e 0%, #48484a 100%);
-    }
-    
-    .os-card.linux {
-      background: linear-gradient(135deg, #fcc419 0%, #fab005 100%);
-    }
-    
-    .os-card.smart-tv {
-      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-    }
-    
-    .os-header {
-      padding: 20px;
-      text-align: center;
-      color: white;
-    }
-    
-    .os-icon {
-      font-size: 3em;
-      display: block;
-      margin-bottom: 10px;
-    }
-    
-    .os-header h3 {
-      font-size: 1.5em;
-      margin: 0;
-      color: white;
-    }
-    
-    .os-content {
-      background: rgba(255,255,255,0.95);
-      padding: 20px;
-      color: #2c3e50;
-    }
-    
-    .story-mini {
-      background: rgba(52, 152, 219, 0.1);
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 15px;
-      border-left: 4px solid #3498db;
-    }
-    
-    .comparison-box {
-      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
-      padding: 25px;
-      border-radius: 20px;
-      margin: 30px 0;
-      border: 3px solid #e17055;
-    }
-    
-    .comparison-box h3 {
-      text-align: center;
-      color: #2c3e50;
-      margin-bottom: 20px;
-    }
-    
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-    }
-    
-    .comparison-item {
-      background: rgba(255,255,255,0.9);
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: bold;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
-    
-    .workflow-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin: 25px 0;
-    }
-    
-    .workflow-step {
-      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-    
-    .workflow-step:hover {
-      transform: translateY(-3px);
-      border-color: #4ecdc4;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-    
-    .workflow-step .step-number {
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 1.2em;
-      margin: 0 auto 15px;
-    }
-    
-    .workflow-step h4 {
-      color: #2c3e50;
-      margin-bottom: 10px;
-    }
-    
-    .detailed-story {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 30px;
-      border-radius: 20px;
-      margin: 30px 0;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    
-    .detailed-story h3 {
-      color: #ffd700;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    
-    .story-content {
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 15px;
-    }
-    
-    .character-story {
-      background: rgba(255,255,255,0.1);
-      padding: 15px;
-      border-radius: 10px;
-      margin: 15px 0;
-      border-left: 4px solid #ffd700;
-    }
-    
-    .character-story h4 {
-      color: #ffd700;
-      margin-bottom: 10px;
-    }
-    
-    .story-conclusion {
-      background: rgba(255,215,0,0.2);
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 20px;
-      font-weight: bold;
-      text-align: center;
-      border: 2px solid #ffd700;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أساسيات الإنترنت والشبكات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #0f1628;
+    --card: #141d35;
+    --card2: #1a2540;
+    --accent: #4f9eff;
+    --accent2: #7b61ff;
+    --accent3: #00d4aa;
+    --accent4: #ff6b6b;
+    --accent5: #ffd166;
+    --text: #e8eef8;
+    --text2: #a0b0cc;
+    --border: rgba(79,158,255,0.15);
+    --glow: rgba(79,158,255,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── BACKGROUND ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(79,158,255,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 90%, rgba(123,97,255,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(0,212,170,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: relative;
+    text-align: center;
+    padding: 70px 20px 50px;
+    overflow: hidden;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(79,158,255,0.12);
+    border: 1px solid rgba(79,158,255,0.3);
+    color: var(--accent);
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #fff 30%, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  header p {
+    color: var(--text2);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* ─── NAV TABS ─── */
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 30px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,14,26,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    padding: 10px 22px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .tab-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(79,158,255,0.06);
+  }
+  .tab-btn.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(79,158,255,0.3);
+  }
+
+  /* ─── SECTIONS ─── */
+  .section { display: none; animation: fadeIn 0.4s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SECTION HEADER ─── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-icon {
+    width: 54px; height: 54px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+  .section-title h2 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+  }
+  .section-title p { color: var(--text2); font-size: 0.95rem; margin-top: 2px; }
+
+  /* ─── STORY CARD ─── */
+  .story-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .story-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(79,158,255,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .story-card h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .story-card p { color: var(--text2); margin-bottom: 10px; font-size: 1rem; }
+
+  /* ─── ILLUSTRATION SVG ─── */
+  .illustration {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    display: block;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  /* ─── GRID CARDS ─── */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 30px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 30px; }
+
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 24px;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .info-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 18px 18px 0 0;
+  }
+  .info-card.blue::after { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+  .info-card.green::after { background: linear-gradient(90deg, var(--accent3), #00a86b); }
+  .info-card.red::after { background: linear-gradient(90deg, var(--accent4), #ff9a3c); }
+  .info-card.yellow::after { background: linear-gradient(90deg, var(--accent5), #f8a737); }
+  .info-card.purple::after { background: linear-gradient(90deg, var(--accent2), #c084fc); }
+
+  .info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    border-color: rgba(79,158,255,0.3);
+  }
+  .info-card .card-icon { font-size: 2rem; margin-bottom: 14px; }
+  .info-card h4 { font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .info-card p { color: var(--text2); font-size: 0.9rem; }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .highlight-box.blue { background: rgba(79,158,255,0.08); border: 1px solid rgba(79,158,255,0.2); }
+  .highlight-box.green { background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.2); }
+  .highlight-box.red { background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.2); }
+  .highlight-box.yellow { background: rgba(255,209,102,0.08); border: 1px solid rgba(255,209,102,0.2); }
+  .highlight-box .icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
+  .highlight-box h4 { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+  .highlight-box p { color: var(--text2); font-size: 0.9rem; }
+
+  /* ─── TAG PILL ─── */
+  .tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-left: 8px;
+  }
+  .tag.yes { background: rgba(0,212,170,0.15); color: var(--accent3); border: 1px solid rgba(0,212,170,0.3); }
+  .tag.no  { background: rgba(255,107,107,0.15); color: var(--accent4); border: 1px solid rgba(255,107,107,0.3); }
+
+  /* ─── COMPARE TABLE ─── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .compare-table th {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-align: right;
+  }
+  .compare-table td {
+    background: var(--card);
+    color: var(--text2);
+    padding: 13px 20px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: var(--card2); }
+
+  /* ─── SUMMARY STRIP ─── */
+  .summary-strip {
+    background: linear-gradient(135deg, rgba(79,158,255,0.1), rgba(123,97,255,0.1));
+    border: 1px solid rgba(79,158,255,0.2);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 20px;
+  }
+  .summary-strip h3 {
+    color: var(--accent);
+    font-weight: 900;
+    margin-bottom: 18px;
+    font-size: 1.2rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .summary-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  .summary-item {
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+  }
+  .summary-item .si-icon { font-size: 1.5rem; margin-bottom: 6px; }
+  .summary-item .si-title { font-size: 0.85rem; font-weight: 800; color: #fff; }
+  .summary-item .si-def { font-size: 0.78rem; color: var(--text2); margin-top: 2px; }
+
+  /* ─── QUIZ ─── */
+  .quiz-header {
+    background: linear-gradient(135deg, var(--card), var(--card2));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .quiz-header .qh-icon { font-size: 3rem; }
+  .quiz-header h2 { font-size: 1.5rem; font-weight: 900; color: #fff; }
+  .quiz-header p { color: var(--text2); }
+  .quiz-stats {
+    margin-right: auto;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    background: rgba(79,158,255,0.1);
+    border: 1px solid rgba(79,158,255,0.2);
+    border-radius: 12px;
+    padding: 10px 18px;
+    text-align: center;
+  }
+  .stat-box .sb-num { font-size: 1.4rem; font-weight: 900; color: var(--accent); }
+  .stat-box .sb-lbl { font-size: 0.75rem; color: var(--text2); }
+
+  .model-tabs {
+    display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .model-tab {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    padding: 9px 22px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  .model-tab.active {
+    background: linear-gradient(135deg, var(--accent3), #00a86b);
+    color: #fff; border-color: transparent;
+    box-shadow: 0 0 18px rgba(0,212,170,0.3);
+  }
+
+  .quiz-model { display: none; }
+  .quiz-model.active { display: block; animation: fadeIn 0.35s ease; }
+
+  .question-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+  }
+  .question-block:hover { border-color: rgba(79,158,255,0.3); }
+  .q-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #fff;
+    margin-left: 12px;
+    flex-shrink: 0;
+  }
+  .q-text {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin-bottom: 18px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1.6;
+  }
+  .q-type-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 2px 10px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .q-type-badge.tf  { background: rgba(255,209,102,0.15); color: var(--accent5); border: 1px solid rgba(255,209,102,0.3); }
+  .q-type-badge.mc  { background: rgba(79,158,255,0.15);  color: var(--accent);  border: 1px solid rgba(79,158,255,0.3); }
+
+  .options { display: grid; gap: 10px; margin-bottom: 16px; }
+  .option-btn {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 11px 18px;
+    text-align: right;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text2);
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .option-btn:hover:not(:disabled) {
+    background: rgba(79,158,255,0.08);
+    border-color: rgba(79,158,255,0.3);
+    color: #fff;
+  }
+  .option-btn.correct { background: rgba(0,212,170,0.12); border-color: var(--accent3); color: var(--accent3); }
+  .option-btn.wrong   { background: rgba(255,107,107,0.12); border-color: var(--accent4); color: var(--accent4); }
+  .option-btn .opt-letter {
+    width: 26px; height: 26px;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .reveal-btn {
+    background: transparent;
+    border: 1px solid rgba(79,158,255,0.3);
+    color: var(--accent);
+    padding: 9px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .reveal-btn:hover { background: rgba(79,158,255,0.08); }
+
+  .answer-reveal {
+    display: none;
+    margin-top: 14px;
+    padding: 16px 20px;
+    background: rgba(0,212,170,0.07);
+    border: 1px solid rgba(0,212,170,0.2);
+    border-radius: 12px;
+    color: var(--accent3);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .answer-reveal.show { display: block; animation: fadeIn 0.3s ease; }
+  .answer-reveal strong { color: #fff; }
+
+  /* ─── SCORE TRACKER ─── */
+  .score-bar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 28px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .score-bar .sb-label { color: var(--text2); font-weight: 700; font-size: 0.95rem; }
+  .score-bar .sb-score { font-size: 1.6rem; font-weight: 900; color: var(--accent5); }
+  .score-bar .sb-bar-wrap {
+    flex: 1;
+    min-width: 160px;
+    height: 10px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50px;
+    overflow: hidden;
+  }
+  .score-bar .sb-bar-fill {
+    height: 100%;
+    border-radius: 50px;
+    background: linear-gradient(90deg, var(--accent3), var(--accent));
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .reset-btn {
+    background: rgba(255,107,107,0.1);
+    border: 1px solid rgba(255,107,107,0.3);
+    color: var(--accent4);
+    padding: 8px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    transition: all 0.25s;
+  }
+  .reset-btn:hover { background: rgba(255,107,107,0.18); }
+
+  /* ─── SVG ILLUSTRATIONS ─── */
+  .svg-illustration { width: 100%; border-radius: 16px; margin-bottom: 30px; }
+
+  /* ─── PROTOCOL CARDS ─── */
+  .proto-card {
+    border-radius: 18px;
+    padding: 26px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .proto-card.tcp { background: linear-gradient(135deg, rgba(79,158,255,0.1), rgba(79,158,255,0.05)); border: 1px solid rgba(79,158,255,0.25); }
+  .proto-card.udp { background: linear-gradient(135deg, rgba(255,209,102,0.1), rgba(255,209,102,0.05)); border: 1px solid rgba(255,209,102,0.25); }
+  .proto-card h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 12px; }
+  .proto-card.tcp h3 { color: var(--accent); }
+  .proto-card.udp h3 { color: var(--accent5); }
+  .proto-features { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .pf { padding: 6px 14px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; }
+  .pf.plus  { background: rgba(0,212,170,0.15); color: var(--accent3); }
+  .pf.minus { background: rgba(255,107,107,0.15); color: var(--accent4); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text2);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+    .quiz-stats { margin-right: 0; margin-top: 12px; }
+    .quiz-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="floating">💻 مقدمة في الكمبيوتر والتكنولوجيا <span class="emoji-large">🌟</span></h1>
 
-    <div class="section">
-      <h2>🧱 ما هو الهاردوير؟</h2>
-      <p><span class="highlight">الهاردوير</span> هو كل جزء مادي نقدر نمسكه أو نشوفه في الكمبيوتر أو الموبايل أو التابلت أو التليفزيون الذكي.</p>
-      <ul>
-        <li><span class="name">يوسف:</span> لما تمسك الماوس وتتحكم في اللعبة.</li>
-        <li><span class="name">رودي:</span> لما تلبس السماعة وتسمع فيديو.</li>
-        <li><span class="name">هنا:</span> لما تكتبي على الكيبورد وترسمي على الشاشة.</li>
-        <li>جهاز التابلت: شاشته، الكاميرا، السماعة = كلها هاردوير.</li>
-        <li>التلفزيون الذكي: الريموت كنترول، الشاشة، السماعات = هاردوير.</li>
-      </ul>
-      <div class="fun-fact">
-        الهاردوير مثل جسم الإنسان - يمكن لمسه ورؤيته!
-      </div>
+<header>
+  <div class="header-badge">📡 مادة تقنية المعلومات</div>
+  <h1>أساسيات الإنترنت والشبكات</h1>
+  <p>درس تفاعلي شامل مع مراجعة وأسئلة</p>
+</header>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs">
+  <button class="tab-btn active" onclick="showSection('intro')">🎓 مقدمة</button>
+  <button class="tab-btn" onclick="showSection('networks')">🌐 الشبكات</button>
+  <button class="tab-btn" onclick="showSection('ip')">🆔 IP والدومين</button>
+  <button class="tab-btn" onclick="showSection('protocols')">📦 البروتوكولات</button>
+  <button class="tab-btn" onclick="showSection('summary')">📋 ملخص</button>
+  <button class="tab-btn" onclick="showSection('quiz')">✏️ الأسئلة</button>
+</nav>
+
+<!-- ══════════════════════════ INTRO ══════════════════════════ -->
+<section class="section active" id="intro">
+<div class="container">
+
+  <div class="section-title">
+    <div class="section-icon" style="background:linear-gradient(135deg,rgba(79,158,255,.15),rgba(123,97,255,.15))">🎓</div>
+    <div>
+      <h2>مقدمة الدرس</h2>
+      <p>فهم الأساسيات بطريقة بسيطة ومرحة</p>
+    </div>
+  </div>
+
+  <!-- Story illustration -->
+  <svg class="svg-illustration" viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+    <rect width="700" height="220" fill="#141d35" rx="16"/>
+    <!-- person 1 -->
+    <circle cx="90" cy="80" r="28" fill="#1a2540" stroke="#4f9eff" stroke-width="2"/>
+    <text x="90" y="87" text-anchor="middle" font-size="24">👤</text>
+    <text x="90" y="125" text-anchor="middle" fill="#a0b0cc" font-size="12" font-family="Cairo">أنت</text>
+    <!-- envelope -->
+    <rect x="150" y="65" width="60" height="42" rx="8" fill="#0f1628" stroke="#ffd166" stroke-width="1.5"/>
+    <polyline points="150,65 180,90 210,65" stroke="#ffd166" stroke-width="1.5" fill="none"/>
+    <text x="180" y="130" text-anchor="middle" fill="#ffd166" font-size="11" font-family="Cairo">رسالة</text>
+    <!-- arrow right -->
+    <line x1="220" y1="86" x2="290" y2="86" stroke="#4f9eff" stroke-width="2" stroke-dasharray="6,4"/>
+    <polygon points="290,80 300,86 290,92" fill="#4f9eff"/>
+    <!-- router box -->
+    <rect x="300" y="60" width="100" height="52" rx="10" fill="#1a2540" stroke="#7b61ff" stroke-width="1.5"/>
+    <text x="350" y="91" text-anchor="middle" font-size="22">📡</text>
+    <text x="350" y="130" text-anchor="middle" fill="#7b61ff" font-size="11" font-family="Cairo">روتر / بروتوكول</text>
+    <!-- arrow right -->
+    <line x1="410" y1="86" x2="480" y2="86" stroke="#4f9eff" stroke-width="2" stroke-dasharray="6,4"/>
+    <polygon points="480,80 490,86 480,92" fill="#4f9eff"/>
+    <!-- person 2 -->
+    <circle cx="540" cy="80" r="28" fill="#1a2540" stroke="#00d4aa" stroke-width="2"/>
+    <text x="540" y="87" text-anchor="middle" font-size="24">👤</text>
+    <text x="540" y="125" text-anchor="middle" fill="#a0b0cc" font-size="12" font-family="Cairo">صاحبك</text>
+    <!-- labels bottom -->
+    <text x="350" y="175" text-anchor="middle" fill="#4f9eff" font-size="13" font-family="Cairo" font-weight="700">IP Address → Domain Name → Protocol</text>
+    <text x="350" y="198" text-anchor="middle" fill="#a0b0cc" font-size="11" font-family="Cairo">٣ عناصر أساسية لإرسال أي بيانات على الإنترنت</text>
+  </svg>
+
+  <!-- ملاحظة مجانية + دعاء + آية -->
+  <div style="
+    background: linear-gradient(135deg, rgba(0,212,170,0.07), rgba(79,158,255,0.07));
+    border: 1px solid rgba(0,212,170,0.25);
+    border-radius: 20px;
+    padding: 30px 28px;
+    margin-bottom: 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  ">
+    <!-- decorative top line -->
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#00d4aa,#4f9eff,transparent)"></div>
+
+    <!-- Quranic verse -->
+    <div style="
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #ffd166;
+      line-height: 2;
+      margin-bottom: 16px;
+      font-family: 'Cairo', sans-serif;
+      letter-spacing: 0.5px;
+    ">
+      ❝وَقُلْ رَبِّ زِدْنِي عِلْمًا ❞
+    </div>
+    <div style="color: var(--text2); font-size: 0.85rem; margin-bottom: 22px;">
+      سورة طه — آية ١١٤
     </div>
 
-    <div class="section">
-      <h2>💻 ما هو السوفتوير؟</h2>
-      <p><span class="highlight">السوفتوير</span> هو البرامج اللي بتشتغل داخل الأجهزة، مش بس الكمبيوتر، كمان الموبايل والتابلت وحتى التلفزيون الذكي. السوفتوير هو اللي بيخلي الأجهزة تفهم أوامرنا وتشتغل.</p>
-      <ul>
-        <li><span class="name">يوسف:</span> فتح لعبة ماين كرافت على التابلت.</li>
-        <li><span class="name">رودي:</span> استخدمت برنامج الرسم على الكمبيوتر.</li>
-        <li><span class="name">هنا:</span> كتبت واجبها على برنامج Word.</li>
-        <li>التليفزيون الذكي: فيه برنامج اسمه "يوتيوب"، وبرنامج "نتفلكس" = دي برامج (سوفتوير).</li>
-      </ul>
-      <div class="fun-fact">
-        السوفتوير مثل العقل - لا يمكن لمسه لكن يمكن رؤية نتائجه!
-      </div>
-      <div class="task">
-        📝 <strong>مهمة:</strong> اكتب 3 أجهزة تقدر تشتغل ببرامج (سوفتوير) واذكر برنامج في كل واحد.
-      </div>
+    <!-- divider -->
+    <div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);margin:0 auto 22px;"></div>
+
+    <!-- free note -->
+    <div style="
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0,212,170,0.1);
+      border: 1px solid rgba(0,212,170,0.25);
+      border-radius: 50px;
+      padding: 8px 22px;
+      margin-bottom: 18px;
+    ">
+      <span style="font-size:1.1rem">🎁</span>
+      <span style="color: #00d4aa; font-weight: 800; font-size: 0.95rem;">هذا العمل مجاني بالكامل — لوجه الله تعالى</span>
     </div>
 
-    <div class="section">
-      <h2>⚙️ كيف تعمل الأجهزة الذكية؟</h2>
-      <p>كل جهاز ذكي زي الكمبيوتر أو الموبايل أو التابلت بيمر بـ 3 خطوات:</p>
-      <ol>
-        <li><span class="step-number">1</span><strong>Input - المدخلات:</strong> تدخل بيانات، زي لما تضغط زر، أو تكتب، أو تسجل صوت.</li>
-        <li><span class="step-number">2</span><strong>Processing - المعالجة:</strong> الجهاز يبدأ يفكر أو يحسب أو يحلل.</li>
-        <li><span class="step-number">3</span><strong>Output - المخرجات:</strong> الجهاز يطلعلك النتيجة: صورة، صوت، نص، أو فيديو.</li>
-      </ol>
-      <div class="story-box">
-        <strong>قصة توضيحية:</strong> <span class="name">رودي</span> صورت نفسها بالموبايل وقالت: "السلام عليكم". الموبايل (Input: الكاميرا والصوت) → سجّل الفيديو (Processing) → عرض الفيديو على الشاشة (Output).
-      </div>
-      <div class="task">
-        🧠 <strong>مهمة:</strong> اكتب قصة قصيرة عن موقف استخدمت فيه جهاز ذكي، وحدد فيه: المدخلات - المعالجة - المخرجات.
+    <!-- dua -->
+    <p style="color: var(--text2); font-size: 0.95rem; line-height: 2; margin-top: 14px;">
+      🤲 <strong style="color:#fff;">لا تنسوا إخوانكم في فلسطين والسودان من الدعاء</strong><br>
+      <span style="font-size:0.88rem;">اللهم انصرهم وثبّت أقدامهم وارفع عنهم البلاء يا رب العالمين 🌿</span>
+    </p>
+
+    <!-- bottom decorative line -->
+    <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#4f9eff,#00d4aa,transparent)"></div>
+  </div>
+
+  <div class="story-card">
+    <h3>📩 تخيل إنك عايز تبعت رسالة لصاحبك…</h3>
+    <p>قبل ما تبعتها، محتاج ٣ حاجات مهمة:</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="info-card blue">
+      <div class="card-icon">🏠</div>
+      <h4>IP Address</h4>
+      <p>عنوان صاحبك علشان الرسالة توصل صح — زي رقم الشقة بالظبط</p>
+    </div>
+    <div class="info-card yellow">
+      <div class="card-icon">🧠</div>
+      <h4>Domain Name</h4>
+      <p>بدل ما تحفظ رقم طويل، تحفظ اسم سهل — زي google.com بدل أرقام</p>
+    </div>
+    <div class="info-card purple">
+      <div class="card-icon">🚚</div>
+      <h4>Protocol</h4>
+      <p>قوانين تنظم إزاي الرسالة تتبعت — زي قواعد المرور على الطريق</p>
+    </div>
+  </div>
+
+  <div class="highlight-box blue">
+    <div class="icon">💡</div>
+    <div>
+      <h4>ونفس الكلام بيحصل لما تفتح أي موقع!</h4>
+      <p>يوتيوب 🎥 — تيك توك 📱 — فيسبوك — أي موقع على الإنترنت. كل ده بيحصل في جزء من الثانية وراء الكواليس.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════ NETWORKS ══════════════════════════ -->
+<section class="section" id="networks">
+<div class="container">
+
+  <div class="section-title">
+    <div class="section-icon" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(0,168,107,.15))">🌐</div>
+    <div>
+      <h2>شبكات الكمبيوتر</h2>
+      <p>الدرس الأول — كل حاجة عن الشبكات</p>
+    </div>
+  </div>
+
+  <!-- Network types illustration -->
+  <svg class="svg-illustration" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="700" height="200" fill="#141d35" rx="16"/>
+    <!-- LAN box -->
+    <rect x="30" y="30" width="180" height="140" rx="12" fill="#0f1628" stroke="#4f9eff" stroke-width="1.5"/>
+    <text x="120" y="56" text-anchor="middle" fill="#4f9eff" font-size="12" font-family="Cairo" font-weight="700">LAN — شبكة محلية</text>
+    <text x="60" y="90" font-size="18">💻</text>
+    <text x="110" y="120" font-size="18">📱</text>
+    <text x="155" y="90" font-size="18">💻</text>
+    <line x1="75" y1="88" x2="120" y2="112" stroke="#4f9eff" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <line x1="155" y1="88" x2="130" y2="112" stroke="#4f9eff" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <text x="120" y="158" text-anchor="middle" fill="#a0b0cc" font-size="10" font-family="Cairo">بيت / مدرسة</text>
+    <!-- WAN box -->
+    <rect x="260" y="30" width="180" height="140" rx="12" fill="#0f1628" stroke="#7b61ff" stroke-width="1.5"/>
+    <text x="350" y="56" text-anchor="middle" fill="#7b61ff" font-size="12" font-family="Cairo" font-weight="700">WAN — شبكة واسعة</text>
+    <text x="280" y="100" font-size="22">🏙️</text>
+    <text x="390" y="100" font-size="22">🏙️</text>
+    <line x1="308" y1="95" x2="388" y2="95" stroke="#7b61ff" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="350" y="158" text-anchor="middle" fill="#a0b0cc" font-size="10" font-family="Cairo">مدن / دول</text>
+    <!-- Internet box -->
+    <rect x="490" y="30" width="180" height="140" rx="12" fill="#0f1628" stroke="#00d4aa" stroke-width="1.5"/>
+    <text x="580" y="56" text-anchor="middle" fill="#00d4aa" font-size="12" font-family="Cairo" font-weight="700">الإنترنت</text>
+    <text x="556" y="110" font-size="40">🌍</text>
+    <text x="580" y="158" text-anchor="middle" fill="#a0b0cc" font-size="10" font-family="Cairo">أكبر شبكة في العالم</text>
+    <!-- connecting arrows -->
+    <line x1="210" y1="100" x2="258" y2="100" stroke="#a0b0cc" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <polygon points="255,95 265,100 255,105" fill="#a0b0cc"/>
+    <line x1="440" y1="100" x2="488" y2="100" stroke="#a0b0cc" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <polygon points="485,95 495,100 485,105" fill="#a0b0cc"/>
+  </svg>
+
+  <div class="highlight-box green">
+    <div class="icon">📌</div>
+    <div>
+      <h4>ما هي الشبكة؟</h4>
+      <p>مجموعة أجهزة (كمبيوتر + موبايل) متصلة ببعض لتبادل البيانات والمعلومات.</p>
+    </div>
+  </div>
+
+  <h3 style="color:#fff;font-weight:900;margin-bottom:18px;font-size:1.2rem">🌍 أنواع الشبكات</h3>
+  <div class="grid-3">
+    <div class="info-card blue">
+      <div class="card-icon">🏠</div>
+      <h4>LAN — شبكة محلية</h4>
+      <p>داخل مكان صغير (بيت أو مدرسة)</p>
+      <div style="margin-top:12px">
+        <span class="tag yes">🔌 سلكية</span>
+        <span class="tag yes" style="margin-top:6px;display:inline-block">📡 لاسلكية WiFi</span>
       </div>
     </div>
-
-    <div class="section">
-      <h2>🧠 ما اللغة التي تفهمها الأجهزة؟</h2>
-      <p>كل الأجهزة الذكية زي الكمبيوتر والموبايل والتابلت والتلفزيون، ما بيفهموش عربي ولا إنجليزي. هما بيفهموا <span class="highlight">اللغة الثنائية (Binary)</span>، اللي مكوّنة من رقمين بس: <strong>0 و 1</strong>.</p>
-      <div class="binary-demo">
-        01001000 01100101 01101100 01101100 01101111
-        <br>
-        (Hello بلغة الكمبيوتر!)
-      </div>
-      <p>يعني كل صورة أو لعبة أو فيديو، بيتحوّل في النهاية لأصفار وواحدات.</p>
-     
-      <!-- <div class="task">
-        🔍 <strong>مهمة:</strong> تخيل جهاز ذكي عنده زرار يفهم 0 يعني "لا تعمل"، و1 يعني "اشتغل". اعمل 3 أوامر بلغة 0 و1.
-      </div> -->
+    <div class="info-card purple">
+      <div class="card-icon">🌆</div>
+      <h4>WAN — شبكة واسعة</h4>
+      <p>تربط مدن أو دول ببعض عبر مسافات طويلة</p>
     </div>
-
-    <div class="section">
-      <h2>🧑‍💻 ما هي لغات البرمجة؟</h2>
-      <p><span class="highlight">لغات البرمجة</span> هي لغات نكتب بيها أوامر بطريقة شبه لغتنا، زي بايثون وScratch. بعد كده الجهاز يترجمها للغة 0 و1 وينفذها.</p>
-      <div class="fun-fact">
-        لغات البرمجة مثل المترجم بين البشر والكمبيوتر!
-      </div>
-      <div class="story-box">
-        <strong>قصة توضيحية:</strong> <span class="name">هنا</span> استخدمت لغة Scratch وكتبت أمر "امشي للأمام 10 خطوات"، التابلت فهم الأمر وشغل اللعبة.
-      </div>
-     
+    <div class="info-card green">
+      <div class="card-icon">🌍</div>
+      <h4>الإنترنت</h4>
+      <p>أكبر شبكة في العالم — بيربط كل الشبكات ببعض</p>
     </div>
+  </div>
 
-    <div class="section">
-      <h2>🎨 كيف تفهم الأجهزة الصور والفيديوهات؟</h2>
-      <p>كل الأجهزة لما تشوف صورة، بتشوفها كنقاط صغيرة اسمها <span class="highlight">Pixels</span>، وكل نقطة لها لون. اللون بيتحول لأرقام، ثم 0 و1.</p>
-      <div style="text-align: center; margin: 20px 0;">
-        <span class="pixel-art"></span>
-        <span class="pixel-art" style="background: #4ecdc4;"></span>
-        <span class="pixel-art" style="background: #45b7d1;"></span>
-        <span class="pixel-art" style="background: #f9ca24;"></span>
-        <span class="pixel-art" style="background: #6c5ce7;"></span>
-        <br>
-        <small>مثال على البكسل (Pixels)</small>
-      </div>
-      <p>الفيديو = مجموعة صور + صوت. كل ده يتحول لأرقام → ثم لـ 0 و1.</p>
-      <div class="story-box">
-        <strong>قصة توضيحية:</strong> <span class="name">يوسف</span> شغّل فيديو على التابلت. الجهاز قرأ الصور والصوت كنقاط وأرقام، ثم عرض الفيديو على الشاشة.
-      </div>
-      <div class="task">
-        🎥 <strong>مهمة:</strong> ارسم صورة بسيطة على ورقة، واقسمها لمربعات صغيرة (Pixels)، ودوّن لون كل واحدة.
-      </div>
+  <h3 style="color:#fff;font-weight:900;margin-bottom:18px;font-size:1.2rem">🔌 مكونات الاتصال بالإنترنت</h3>
+  <div class="grid-3">
+    <div class="info-card yellow">
+      <div class="card-icon">🏢</div>
+      <h4>ISP — مزود الخدمة</h4>
+      <p>شركة بتوصلك الإنترنت — مثال في مصر: WE</p>
     </div>
-
-    <div class="section">
-      <h2>🖥️ ما هو نظام التشغيل (Operating System)؟</h2>
-      <p><span class="highlight">نظام التشغيل</span> هو البرنامج الأساسي اللي بيتحكم في كل شيء في الكمبيوتر أو الموبايل أو التابلت. هو زي المدير اللي بينظم كل الأعمال في الجهاز!</p>
-      
-      <div class="story-box">
-        <strong>قصة توضيحية:</strong> تخيل أن الكمبيوتر هو مدرسة كبيرة. <span class="name">يوسف</span> هو المدير، و<span class="name">رودي</span> مدرسة الرياضيات، و<span class="name">هنا</span> مدرسة الرسم. المدير (نظام التشغيل) بيقول لكل مدرسة متى تشتغل، وأي فصل تستخدم، وكيف تتعامل مع الطلاب. بدون المدير، المدرسة مش هتقدر تشتغل!
-      </div>
-      
-      <div class="fun-fact">
-        نظام التشغيل هو الوسيط بين الهاردوير والسوفتوير - مثل المترجم بين لغتين مختلفتين!
-      </div>
-      
-      <h3>🎯 ليه نظام التشغيل مهم؟</h3>
-      <div class="importance-grid">
-        <div class="importance-card">
-          <div class="card-icon">📱</div>
-          <h4>إدارة البرامج</h4>
-          <p>يفتح ويقفل البرامج، ويتأكد إنها تشتغل بشكل صحيح</p>
-        </div>
-        <div class="importance-card">
-          <div class="card-icon">💾</div>
-          <h4>إدارة الملفات</h4>
-          <p>ينظم الصور والفيديوهات والألعاب في مجلدات</p>
-        </div>
-        <div class="importance-card">
-          <div class="card-icon">🔐</div>
-          <h4>الأمان</h4>
-          <p>يحمي الجهاز من الفيروسات والبرامج الضارة</p>
-        </div>
-        <div class="importance-card">
-          <div class="card-icon">⚡</div>
-          <h4>توفير الطاقة</h4>
-          <p>يتحكم في استهلاك البطارية والكهرباء</p>
-        </div>
-      </div>
+    <div class="info-card blue">
+      <div class="card-icon">📡</div>
+      <h4>Router — الراوتر</h4>
+      <p>يوزع الإنترنت على الأجهزة في البيت ويوجه البيانات</p>
     </div>
+    <div class="info-card red">
+      <div class="card-icon">🔌</div>
+      <h4>Hub — قديم</h4>
+      <p>جهاز قديم كان بيستخدم لربط الأجهزة ببعض فقط</p>
+    </div>
+  </div>
 
-    <div class="section">
-      <h2>🌟 أنواع أنظمة التشغيل المختلفة</h2>
-      <p>فيه أنواع كتير من أنظمة التشغيل، كل واحد له استخدامات مختلفة:</p>
-      
-      <div class="os-types">
-        <div class="os-card windows">
-          <div class="os-header">
-            <span class="os-icon">🪟</span>
-            <h3>Windows</h3>
-          </div>
-          <div class="os-content">
-            <p><strong>الاستخدام:</strong> الكمبيوتر المكتبي واللاب توب</p>
-            <p><strong>المميزات:</strong> سهل الاستخدام، ألعاب كتيرة، برامج متنوعة</p>
-            <div class="story-mini">
-              <strong>قصة:</strong> <span class="name">يوسف</span> بيستخدم Windows على الكمبيوتر بتاعه علشان يلعب Minecraft ويعمل واجب المدرسة على Word.
-            </div>
-          </div>
-        </div>
+  <h3 style="color:#fff;font-weight:900;margin-bottom:18px;font-size:1.2rem">🤝 أنماط استخدام الشبكة</h3>
+  <div class="grid-2">
+    <div class="info-card blue">
+      <div class="card-icon">🏢</div>
+      <h4>Client - Server (عميل - خادم)</h4>
+      <p>السيرفر يقدم خدمة، والعميل يطلبها. مثال: لما تفتح موقع — الموقع هو السيرفر وأنت العميل.</p>
+    </div>
+    <div class="info-card green">
+      <div class="card-icon">🤝</div>
+      <h4>Peer to Peer (ند إلى ند)</h4>
+      <p>كل الأجهزة متساوية — تبادل مباشر بينهم من غير سيرفر مركزي.</p>
+    </div>
+  </div>
 
-        <div class="os-card android">
-          <div class="os-header">
-            <span class="os-icon">🤖</span>
-            <h3>Android</h3>
-          </div>
-          <div class="os-content">
-            <p><strong>الاستخدام:</strong> الموبايل والتابلت</p>
-            <p><strong>المميزات:</strong> تطبيقات كتيرة، سهل التخصيص، Google Play Store</p>
-            <div class="story-mini">
-              <strong>قصة:</strong> <span class="name">رودي</span> عندها تابلت Android بتحمل منه تطبيقات الرسم والألعاب من Google Play.
-            </div>
-          </div>
-        </div>
+  <h3 style="color:#fff;font-weight:900;margin-bottom:18px;font-size:1.2rem">🚗 طرق نقل البيانات</h3>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>الميزة</th>
+        <th>📞 Circuit Switching</th>
+        <th>📦 Packet Switching</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>آلية العمل</td><td>طريق ثابت بين الطرفين</td><td>البيانات تتقسم لحزم صغيرة</td></tr>
+      <tr><td>الاتصال</td><td>✅ ثابت ومستقر</td><td>⚡ مرن وسريع</td></tr>
+      <tr><td>العيب</td><td>❌ يضيع موارد</td><td>❌ ممكن حزم تتأخر</td></tr>
+      <tr><td>مثال الاستخدام</td><td>الهاتف القديم</td><td>الإنترنت الحديث</td></tr>
+    </tbody>
+  </table>
 
-        <div class="os-card ios">
-          <div class="os-header">
-            <span class="os-icon">📱</span>
-            <h3>iOS</h3>
-          </div>
-          <div class="os-content">
-            <p><strong>الاستخدام:</strong> iPhone و iPad</p>
-            <p><strong>المميزات:</strong> سريع وآمن، تطبيقات عالية الجودة، App Store</p>
-            <div class="story-mini">
-              <strong>قصة:</strong> <span class="name">هنا</span> بتستخدم iPad مع iOS لتصوير الفيديوهات وتعديلها بتطبيقات احترافية.
-            </div>
-          </div>
-        </div>
+</div>
+</section>
 
-        <div class="os-card macos">
-          <div class="os-header">
-            <span class="os-icon">🍎</span>
-            <h3>macOS</h3>
-          </div>
-          <div class="os-content">
-            <p><strong>الاستخدام:</strong> أجهزة Mac من Apple</p>
-            <p><strong>المميزات:</strong> مناسب للتصميم، مترابط مع iPhone، واجهة جميلة</p>
-            <div class="story-mini">
-              <strong>قصة:</strong> مدرس الفنون في مدرسة <span class="name">يوسف</span> بيستخدم Mac لتصميم الملصقات والرسوم للمدرسة.
-            </div>
-          </div>
-        </div>
+<!-- ══════════════════════════ IP & DOMAIN ══════════════════════════ -->
+<section class="section" id="ip">
+<div class="container">
 
-        <div class="os-card linux">
-          <div class="os-header">
-            <span class="os-icon">🐧</span>
-            <h3>Linux</h3>
-          </div>
-          <div class="os-content">
-            <p><strong>الاستخدام:</strong> الخوادم والبرمجة</p>
-            <p><strong>المميزات:</strong> مجاني، قوي، آمن، مفتوح المصدر</p>
-            <div class="story-mini">
-              <strong>قصة:</strong> أخو <span class="name">هنا</span> الكبير بيدرس هندسة كمبيوتر وبيستخدم Linux لتعلم البرمجة المتقدمة.
-            </div>
-          </div>
-        </div>
+  <div class="section-title">
+    <div class="section-icon" style="background:linear-gradient(135deg,rgba(255,107,107,.15),rgba(255,154,60,.15))">🆔</div>
+    <div>
+      <h2>IP Address والدومين</h2>
+      <p>الدرس الثاني — العناوين والأسماء</p>
+    </div>
+  </div>
 
-        <div class="os-card smart-tv">
-          <div class="os-header">
-            <span class="os-icon">📺</span>
-            <h3>Smart TV OS</h3>
-          </div>
-          <div class="os-content">
-            <p><strong>الاستخدام:</strong> التلفزيون الذكي</p>
-            <p><strong>المميزات:</strong> يوتيوب، نتفلكس، تطبيقات الترفيه</p>
-            <div class="story-mini">
-              <strong>قصة:</strong> عائلة <span class="name">رودي</span> بتستخدم التلفزيون الذكي لمشاهدة الأفلام والمسلسلات من النت.
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- IP illustration -->
+  <svg class="svg-illustration" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg">
+    <rect width="700" height="180" fill="#141d35" rx="16"/>
+    <!-- device -->
+    <rect x="40" y="50" width="100" height="80" rx="10" fill="#0f1628" stroke="#4f9eff" stroke-width="1.5"/>
+    <text x="90" y="98" text-anchor="middle" font-size="28">💻</text>
+    <text x="90" y="148" text-anchor="middle" fill="#4f9eff" font-size="10" font-family="Cairo">192.168.1.5</text>
+    <!-- arrow -->
+    <line x1="148" y1="90" x2="220" y2="90" stroke="#a0b0cc" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <polygon points="218,84 230,90 218,96" fill="#a0b0cc"/>
+    <!-- DNS box -->
+    <rect x="232" y="55" width="120" height="70" rx="10" fill="#1a2540" stroke="#ffd166" stroke-width="1.5"/>
+    <text x="292" y="83" text-anchor="middle" font-size="20">🌐</text>
+    <text x="292" y="102" text-anchor="middle" fill="#ffd166" font-size="11" font-family="Cairo" font-weight="700">DNS</text>
+    <text x="292" y="117" text-anchor="middle" fill="#a0b0cc" font-size="9" font-family="Cairo">مترجم الأسماء</text>
+    <!-- arrow -->
+    <line x1="355" y1="90" x2="420" y2="90" stroke="#a0b0cc" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <polygon points="418,84 430,90 418,96" fill="#a0b0cc"/>
+    <!-- domain box -->
+    <rect x="432" y="45" width="220" height="90" rx="10" fill="#0f1628" stroke="#00d4aa" stroke-width="1.5"/>
+    <text x="542" y="78" text-anchor="middle" fill="#00d4aa" font-size="13" font-family="Cairo" font-weight="700">google.com</text>
+    <text x="542" y="98" text-anchor="middle" fill="#a0b0cc" font-size="10" font-family="Cairo">بدل</text>
+    <text x="542" y="116" text-anchor="middle" fill="#7b61ff" font-size="11" font-family="Cairo">142.250.190.46</text>
+  </svg>
 
-      <div class="comparison-box">
-        <h3>🔄 مقارنة سريعة:</h3>
-        <div class="comparison-grid">
-          <div class="comparison-item">
-            <strong>للمبتدئين:</strong> Windows, Android, iOS
-          </div>
-          <div class="comparison-item">
-            <strong>للإبداع:</strong> macOS, iOS
-          </div>
-          <div class="comparison-item">
-            <strong>للبرمجة:</strong> Linux, macOS
-          </div>
-          <div class="comparison-item">
-            <strong>للألعاب:</strong> Windows, Android
-          </div>
-        </div>
-      </div>
-
-      <div class="task">
-        🎮 <strong>مهمة تفاعلية:</strong> اكتب أسماء 3 أجهزة تستخدمها في البيت، وحدد نوع نظام التشغيل لكل جهاز. مثال: موبايل سامسونج → Android
+  <div class="grid-2">
+    <div class="highlight-box blue">
+      <div class="icon">🆔</div>
+      <div>
+        <h4>ما هو IP Address؟</h4>
+        <p>رقم مميز لكل جهاز على الإنترنت — بيحدد مكانه بالظبط. مثال: <strong style="color:var(--accent)">192.168.1.1</strong></p>
       </div>
     </div>
-
-    <div class="section">
-      <h2>🧠 كيف يعمل نظام التشغيل؟</h2>
-      <p>نظام التشغيل بيعمل زي المايسترو في الأوركسترا - بيقود كل الآلات (البرامج) علشان تعزف مع بعض!</p>
-      
-      <div class="workflow-steps">
-        <div class="workflow-step">
-          <div class="step-number">1</div>
-          <h4>تشغيل الجهاز</h4>
-          <p>لما تدوس زر التشغيل، نظام التشغيل هو أول حاجة تشتغل</p>
-        </div>
-        <div class="workflow-step">
-          <div class="step-number">2</div>
-          <h4>فحص الأجهزة</h4>
-          <p>يتأكد إن الكاميرا والسماعة والشاشة كلها شغالة</p>
-        </div>
-        <div class="workflow-step">
-          <div class="step-number">3</div>
-          <h4>تحضير البرامج</h4>
-          <p>يجهز البرامج المهمة زي المتصفح والألعاب</p>
-        </div>
-        <div class="workflow-step">
-          <div class="step-number">4</div>
-          <h4>استقبال الأوامر</h4>
-          <p>يستنى أوامرك عند النقر أو الكتابة</p>
-        </div>
-      </div>
-
-      <div class="detailed-story">
-        <h3>📖 قصة شاملة:</h3>
-        <div class="story-content">
-          <p><span class="name">يوسف، رودي، وهنا</span> قرروا يعملوا مشروع جماعي عن الفضاء. كل واحد منهم استخدم جهاز مختلف:</p>
-          
-          <div class="character-story">
-            <h4>🌟 يوسف (Windows):</h4>
-            <p>استخدم الكمبيوتر المكتبي لكتابة النصوص في Word وعمل عروض تقديمية في PowerPoint. نظام Windows ساعده ينظم ملفات المشروع في مجلدات مختلفة.</p>
-          </div>
-          
-          <div class="character-story">
-            <h4>🌟 رودي (Android):</h4>
-            <p>استخدمت التابلت لرسم الكواكب والنجوم باستخدام تطبيقات الرسم. نظام Android خلاها تحمل تطبيقات مختلفة من Google Play وتشارك الصور مع الأصدقاء.</p>
-          </div>
-          
-          <div class="character-story">
-            <h4>🌟 هنا (iOS):</h4>
-            <p>استخدمت iPad لتصوير فيديوهات وتعديلها بتطبيقات احترافية. نظام iOS ساعدها تدمج الفيديوهات مع الصور والنصوص في عرض تقديمي رائع.</p>
-          </div>
-          
-          <p class="story-conclusion">في النهاية، كل نظام تشغيل ساعد كل شخص يستخدم قدراته المختلفة لإنجاز المشروع بطريقة مميزة!</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>🎯 المهمة النهائية - تحدي Binary!</h2>
-      <p>الآن حان الوقت لتطبيق ما تعلمته! كل واحد منكم سيحول معلوماته الشخصية إلى لغة الكمبيوتر (Binary).</p>
-      
-      <div class="final-tasks">
-        <div class="student-task">
-          <h3>🌟 <span class="name">يوسف</span> - مهمتك:</h3>
-          <div class="task-content">
-            <p><strong>حول المعلومات التالية إلى Binary:</strong></p>
-            <ul>
-              <li>📝 اسمك الثلاثي كاملاً</li>
-              <li>📅 تاريخ ميلادك (اليوم/الشهر/السنة)</li>
-              <li>🏠 عنوان سكنك (المدينة والحي)</li>
-            </ul>
-            <div class="binary-converter">
-              <p><strong>استخدم هذا الموقع للتحويل:</strong></p>
-              <a href="https://www.rapidtables.com/convert/number/ascii-to-binary.html" 
-                 target="_blank" class="converter-link">
-                 🔗 محول النص إلى Binary
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="student-task">
-          <h3>🌟 <span class="name">رودي</span> - مهمتك:</h3>
-          <div class="task-content">
-            <p><strong>حول المعلومات التالية إلى Binary:</strong></p>
-            <ul>
-              <li>📝 اسمك الثلاثي كاملاً</li>
-              <li>📅 تاريخ ميلادك (اليوم/الشهر/السنة)</li>
-              <li>🏠 عنوان سكنك (المدينة والحي)</li>
-            </ul>
-            <div class="binary-converter">
-              <p><strong>استخدم هذا الموقع للتحويل:</strong></p>
-              <a href="https://www.rapidtables.com/convert/number/ascii-to-binary.html" 
-                 target="_blank" class="converter-link">
-                 🔗 محول النص إلى Binary
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="student-task">
-          <h3>🌟 <span class="name">هنا</span> - مهمتك:</h3>
-          <div class="task-content">
-            <p><strong>حول المعلومات التالية إلى Binary:</strong></p>
-            <ul>
-              <li>📝 اسمك الثلاثي كاملاً</li>
-              <li>📅 تاريخ ميلادك (اليوم/الشهر/السنة)</li>
-              <li>🏠 عنوان سكنك (المدينة والحي)</li>
-            </ul>
-            <div class="binary-converter">
-              <p><strong>استخدم هذا الموقع للتحويل:</strong></p>
-              <a href="https://www.rapidtables.com/convert/number/ascii-to-binary.html" 
-                 target="_blank" class="converter-link">
-                 🔗 محول النص إلى Binary
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="challenge-instructions">
-        <h3>📋 تعليمات التحدي:</h3>
-        <div class="instructions-grid">
-          <div class="instruction-card">
-            <span class="step-number">1</span>
-            <p>اكتب اسمك بالإنجليزي في الموقع</p>
-          </div>
-          <div class="instruction-card">
-            <span class="step-number">2</span>
-            <p>انسخ النتيجة (الأرقام 0 و 1)</p>
-          </div>
-          <div class="instruction-card">
-            <span class="step-number">3</span>
-            <p>كرر العملية مع تاريخ الميلاد</p>
-          </div>
-          <div class="instruction-card">
-            <span class="step-number">4</span>
-            <p>كرر العملية مع العنوان</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="final-message">
-        <p>🎉 <strong>تهانينا!</strong> عندما تكملوا هذا التحدي، ستكونوا فهمتم كيف يفكر الكمبيوتر ويحول كل شيء إلى أرقام!</p>
-        <div class="celebration-box">
-          <span class="emoji-large">🏆</span>
-          <p>أنتم الآن خبراء في لغة الكمبيوتر!</p>
-          <span class="emoji-large">🚀</span>
-        </div>
+    <div class="highlight-box yellow">
+      <div class="icon">🌐</div>
+      <div>
+        <h4>ما هو Domain Name؟</h4>
+        <p>اسم سهل بدل ما تحفظ رقم طويل. مثال: <strong style="color:var(--accent5)">google.com</strong> بدل <strong>142.250.190.46</strong></p>
       </div>
     </div>
   </div>
 
-  <script>
-    // إضافة تأثيرات تفاعلية
-    document.addEventListener('DOMContentLoaded', function() {
-      // تأثير النقر على الأقسام
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => {
-        section.addEventListener('click', function() {
-          this.style.transform = 'scale(1.02)';
-          setTimeout(() => {
-            this.style.transform = 'scale(1)';
-          }, 200);
-        });
+  <h3 style="color:#fff;font-weight:900;margin-bottom:18px;font-size:1.2rem">🌍 أنواع IP</h3>
+  <div class="grid-2">
+    <div class="info-card blue">
+      <div class="card-icon">🌐</div>
+      <h4>Public IP — عام</h4>
+      <p>يُستخدم على الإنترنت العام. كل جهاز له رقم عام مختلف على الشبكة.</p>
+    </div>
+    <div class="info-card green">
+      <div class="card-icon">🏠</div>
+      <h4>Private IP — خاص</h4>
+      <p>يُستخدم داخل الشبكة المحلية (البيت مثلاً). مثل 192.168.x.x</p>
+    </div>
+  </div>
+
+  <div class="highlight-box red">
+    <div class="icon">⚠️</div>
+    <div>
+      <h4>هل عناوين IP بتخلص؟</h4>
+      <p>نعم! عناوين <strong style="color:#fff">IPv4</strong> كانت محدودة وبدأت تخلص. الحل: <strong style="color:var(--accent3)">IPv6</strong> — عدد ضخم جداً من العناوين يكفي للعالم كله وزيادة.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box green">
+    <div class="icon">📖</div>
+    <div>
+      <h4>ما هو DNS؟</h4>
+      <p>زي "مترجم" — تكتب اسم الموقع، DNS يحوله إلى IP، وتوصلك للموقع. بدونه كنت هتحفظ أرقام طويلة لكل موقع!</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════ PROTOCOLS ══════════════════════════ -->
+<section class="section" id="protocols">
+<div class="container">
+
+  <div class="section-title">
+    <div class="section-icon" style="background:linear-gradient(135deg,rgba(123,97,255,.15),rgba(192,132,252,.15))">📦</div>
+    <div>
+      <h2>بروتوكولات الاتصال</h2>
+      <p>الدرس الثالث — قوانين نقل البيانات</p>
+    </div>
+  </div>
+
+  <!-- Packet illustration -->
+  <svg class="svg-illustration" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+    <rect width="700" height="160" fill="#141d35" rx="16"/>
+    <!-- big data -->
+    <rect x="30" y="45" width="130" height="70" rx="10" fill="#1a2540" stroke="#7b61ff" stroke-width="1.5"/>
+    <text x="95" y="88" text-anchor="middle" fill="#7b61ff" font-size="11" font-family="Cairo" font-weight="700">📄 بيانات كبيرة</text>
+    <!-- arrow split -->
+    <line x1="165" y1="80" x2="205" y2="80" stroke="#a0b0cc" stroke-width="1.5"/>
+    <text x="215" y="84" fill="#a0b0cc" font-size="18">→</text>
+    <!-- packets -->
+    <rect x="250" y="30" width="70" height="40" rx="8" fill="#0f1628" stroke="#4f9eff" stroke-width="1.2"/>
+    <text x="285" y="56" text-anchor="middle" fill="#4f9eff" font-size="11" font-family="Cairo">حزمة 1</text>
+    <rect x="250" y="80" width="70" height="40" rx="8" fill="#0f1628" stroke="#00d4aa" stroke-width="1.2"/>
+    <text x="285" y="106" text-anchor="middle" fill="#00d4aa" font-size="11" font-family="Cairo">حزمة 2</text>
+    <rect x="250" y="130" width="70" height="25" rx="8" fill="#0f1628" stroke="#ffd166" stroke-width="1.2"/>
+    <text x="285" y="148" text-anchor="middle" fill="#ffd166" font-size="11" font-family="Cairo">حزمة 3</text>
+    <!-- arrows -->
+    <line x1="325" y1="50" x2="420" y2="75" stroke="#4f9eff" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <line x1="325" y1="100" x2="420" y2="85" stroke="#00d4aa" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <line x1="325" y1="143" x2="420" y2="95" stroke="#ffd166" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <!-- reassemble -->
+    <rect x="425" y="45" width="120" height="70" rx="10" fill="#1a2540" stroke="#00d4aa" stroke-width="1.5"/>
+    <text x="485" y="75" text-anchor="middle" fill="#00d4aa" font-size="11" font-family="Cairo" font-weight="700">✅ تجميع</text>
+    <text x="485" y="95" text-anchor="middle" fill="#a0b0cc" font-size="10" font-family="Cairo">عند الوصول</text>
+    <!-- destination -->
+    <rect x="575" y="55" width="90" height="50" rx="10" fill="#0f1628" stroke="#7b61ff" stroke-width="1.2"/>
+    <text x="620" y="85" text-anchor="middle" font-size="22">🖥️</text>
+    <line x1="547" y1="80" x2="572" y2="80" stroke="#a0b0cc" stroke-width="1.5"/>
+    <polygon points="570,74 582,80 570,86" fill="#a0b0cc"/>
+  </svg>
+
+  <div class="highlight-box blue">
+    <div class="icon">📦</div>
+    <div>
+      <h4>ما هي الحزمة (Packet)؟</h4>
+      <p>البيانات بتتقسم لأجزاء صغيرة — كل جزء له عنوان — وبتتجمع تاني عند الوصول.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box yellow">
+    <div class="icon">📜</div>
+    <div>
+      <h4>ما هو البروتوكول؟</h4>
+      <p>مجموعة قوانين تنظم إرسال البيانات بين الأجهزة — زي قواعد المرور بالظبط.</p>
+    </div>
+  </div>
+
+  <h3 style="color:#fff;font-weight:900;margin-bottom:18px;font-size:1.2rem">⚡ أهم البروتوكولات</h3>
+
+  <div class="proto-card tcp">
+    <h3>🧠 TCP</h3>
+    <p style="color:var(--text2)">بروتوكول التحكم في الإرسال — دقيق ومضمون</p>
+    <div class="proto-features">
+      <span class="pf plus">✔ دقيق جداً</span>
+      <span class="pf plus">✔ يعيد البيانات المفقودة</span>
+      <span class="pf plus">✔ يرتب البيانات</span>
+    </div>
+    <p style="margin-top:14px;color:var(--text2);font-size:0.9rem">يُستخدم في: <strong style="color:#fff">المواقع — التحميل</strong></p>
+  </div>
+
+  <div class="proto-card udp">
+    <h3>⚡ UDP</h3>
+    <p style="color:var(--text2)">بروتوكول مخصص للسرعة — سريع بس مش مضمون 100%</p>
+    <div class="proto-features">
+      <span class="pf plus">✔ سريع جداً</span>
+      <span class="pf minus">✘ لا يهتم بفقد بعض البيانات</span>
+    </div>
+    <p style="margin-top:14px;color:var(--text2);font-size:0.9rem">يُستخدم في: <strong style="color:#fff">الفيديوهات المباشرة — الألعاب 🎮</strong></p>
+  </div>
+
+  <div class="info-card blue" style="margin-bottom:20px">
+    <div class="card-icon">📍</div>
+    <h4>IP Protocol</h4>
+    <p>مسؤول عن تحديد العنوان وإيصال البيانات للمكان الصح.</p>
+  </div>
+
+  <div class="highlight-box green">
+    <div class="icon">🧩</div>
+    <div>
+      <h4>ما هو TCP/IP؟</h4>
+      <p>النظام الكامل لنقل البيانات: تقسيم البيانات 📦 → إضافة العنوان 📍 → اختيار الطريق 🚗 → إعادة التجميع 🧩</p>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <h3>🎯 مثال واقعي — يوتيوب</h3>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:1.2rem">1️⃣</span>
+        <span style="color:var(--text2)">تكتب: <strong style="color:#fff">youtube.com</strong></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:1.2rem">2️⃣</span>
+        <span style="color:var(--text2)">DNS يحوله إلى IP</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:1.2rem">3️⃣</span>
+        <span style="color:var(--text2)">بروتوكولات TCP/IP تبدأ الشغل</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:1.2rem">4️⃣</span>
+        <span style="color:var(--text2)">البيانات تجيلك على شكل حزم</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:1.2rem">5️⃣</span>
+        <span style="color:var(--text2)">الفيديو يظهر عندك 🎥</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════ SUMMARY ══════════════════════════ -->
+<section class="section" id="summary">
+<div class="container">
+
+  <div class="section-title">
+    <div class="section-icon" style="background:linear-gradient(135deg,rgba(255,209,102,.15),rgba(248,167,55,.15))">📋</div>
+    <div>
+      <h2>ملخص سريع للحفظ</h2>
+      <p>أهم المصطلحات دفعة واحدة</p>
+    </div>
+  </div>
+
+  <div class="summary-strip">
+    <h3>🔥 الكلمات المفتاحية</h3>
+    <div class="summary-items">
+      <div class="summary-item">
+        <div class="si-icon">🌐</div>
+        <div class="si-title">الشبكة</div>
+        <div class="si-def">أجهزة متصلة ببعض</div>
+      </div>
+      <div class="summary-item">
+        <div class="si-icon">🆔</div>
+        <div class="si-title">IP</div>
+        <div class="si-def">عنوان الجهاز</div>
+      </div>
+      <div class="summary-item">
+        <div class="si-icon">📝</div>
+        <div class="si-title">Domain</div>
+        <div class="si-def">اسم سهل للموقع</div>
+      </div>
+      <div class="summary-item">
+        <div class="si-icon">👨‍🏫</div>
+        <div class="si-title">DNS</div>
+        <div class="si-def">مترجم الأسماء</div>
+      </div>
+      <div class="summary-item">
+        <div class="si-icon">📦</div>
+        <div class="si-title">Packet</div>
+        <div class="si-def">جزء من البيانات</div>
+      </div>
+      <div class="summary-item">
+        <div class="si-icon">📜</div>
+        <div class="si-title">Protocol</div>
+        <div class="si-def">قوانين الإرسال</div>
+      </div>
+    </div>
+  </div>
+
+  <table class="compare-table" style="margin-top:30px">
+    <thead>
+      <tr><th>المصطلح</th><th>التعريف</th><th>المثال</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>🏠 LAN</td><td>شبكة محلية صغيرة</td><td>WiFi البيت</td></tr>
+      <tr><td>🌆 WAN</td><td>شبكة واسعة</td><td>ربط مدن / دول</td></tr>
+      <tr><td>🌍 Internet</td><td>أكبر شبكة عالمية</td><td>كل الشبكات معاً</td></tr>
+      <tr><td>🏢 ISP</td><td>مزود خدمة الإنترنت</td><td>WE في مصر</td></tr>
+      <tr><td>📡 Router</td><td>موزع الإنترنت</td><td>الراوتر في البيت</td></tr>
+      <tr><td>🆔 IP</td><td>عنوان الجهاز</td><td>192.168.1.1</td></tr>
+      <tr><td>🌐 Domain</td><td>اسم الموقع</td><td>google.com</td></tr>
+      <tr><td>👨‍🏫 DNS</td><td>مترجم الأسماء لـ IP</td><td>google.com → رقم</td></tr>
+      <tr><td>📦 Packet</td><td>وحدة نقل البيانات</td><td>جزء صغير من ملف</td></tr>
+      <tr><td>🧠 TCP</td><td>دقيق ومضمون</td><td>تحميل ملفات</td></tr>
+      <tr><td>⚡ UDP</td><td>سريع وغير مضمون</td><td>بث مباشر / ألعاب</td></tr>
+    </tbody>
+  </table>
+
+</div>
+</section>
+
+<!-- ══════════════════════════ QUIZ ══════════════════════════ -->
+<section class="section" id="quiz">
+<div class="container">
+
+  <div class="quiz-header">
+    <div class="qh-icon">✏️</div>
+    <div>
+      <h2>بنك الأسئلة</h2>
+      <p>نموذجان كاملان — صح/خطأ واختيار من متعدد</p>
+    </div>
+    <div class="quiz-stats">
+      <div class="stat-box">
+        <div class="sb-num" id="total-q">0</div>
+        <div class="sb-lbl">سؤال</div>
+      </div>
+      <div class="stat-box">
+        <div class="sb-num" id="correct-q" style="color:var(--accent3)">0</div>
+        <div class="sb-lbl">صح</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="score-bar">
+    <span class="sb-label">📊 نسبة الإجابات الصحيحة:</span>
+    <div class="sb-bar-wrap"><div class="sb-bar-fill" id="score-fill"></div></div>
+    <span class="sb-score" id="score-pct">0%</span>
+    <button class="reset-btn" onclick="resetQuiz()">🔄 إعادة</button>
+  </div>
+
+  <div class="model-tabs">
+    <button class="model-tab active" onclick="showModel('m1')">📘 النموذج الأول</button>
+    <button class="model-tab" onclick="showModel('m2')">📗 النموذج الثاني</button>
+  </div>
+
+  <!-- MODEL 1 -->
+  <div class="quiz-model active" id="m1">
+    <h3 style="color:var(--accent);font-weight:900;margin-bottom:20px;font-size:1.1rem">س1 — صح أم خطأ ✅❌</h3>
+
+    <!-- TF questions model 1 -->
+    <div id="tf-questions-m1"></div>
+
+    <h3 style="color:var(--accent);font-weight:900;margin:30px 0 20px;font-size:1.1rem">س2 — اختيار من متعدد 🎯</h3>
+    <div id="mc-questions-m1"></div>
+  </div>
+
+  <!-- MODEL 2 -->
+  <div class="quiz-model" id="m2">
+    <h3 style="color:var(--accent3);font-weight:900;margin-bottom:20px;font-size:1.1rem">س1 — صح أم خطأ ✅❌</h3>
+    <div id="tf-questions-m2"></div>
+
+    <h3 style="color:var(--accent3);font-weight:900;margin:30px 0 20px;font-size:1.1rem">س2 — اختيار من متعدد 🎯</h3>
+    <div id="mc-questions-m2"></div>
+  </div>
+
+</div>
+</section>
+
+<footer>
+  <p>📡 درس أساسيات الإنترنت والشبكات &nbsp;|&nbsp; صُمِّم للفهم السهل والمراجعة الفعّالة</p>
+</footer>
+
+<script>
+// ─── TAB NAVIGATION ───
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showModel(id) {
+  document.querySelectorAll('.quiz-model').forEach(m => m.classList.remove('active'));
+  document.querySelectorAll('.model-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ─── QUIZ DATA ───
+const data = {
+  m1_tf: [
+    { q: "شبكة الكمبيوتر هي نظام يربط الأجهزة المعلوماتية لتبادل البيانات فيما بينها", ans: true,  exp: "صواب — هذا هو تعريف شبكة الكمبيوتر بالضبط." },
+    { q: "الشبكة المحلية اللاسلكية (Wireless LAN) تتبادل البيانات عبر الكابلات", ans: false, exp: "خطأ — اللاسلكية تعمل بـ WiFi وموجات الراديو وليس كابلات." },
+    { q: "من الضروري توقيع عقد مع شركة ISP لتسهيل الاتصال بالإنترنت", ans: true,  exp: "صواب — ISP هو مزود الخدمة الذي يوصلك بالإنترنت." },
+    { q: "جهاز التوجيه (Router) هو جهاز مركزي يقوم فقط بتوصيل عدة كابلات", ans: false, exp: "خطأ — هذا وصف الـ Hub القديم. الـ Router يوجه البيانات بين الشبكات." },
+    { q: "خادم الطابعة (Printer server) هو خادم يتعامل مع معالجة الطباعة", ans: true,  exp: "صواب — وظيفته إدارة طلبات الطباعة." },
+    { q: "في نظام ند إلى ند، الأجهزة ليست متساوية بل يوجد خادم يتحكم في البقية", ans: false, exp: "خطأ — في P2P كل الأجهزة متساوية ولا يوجد خادم مركزي." },
+    { q: "الحزمة (Packet) هي وحدة تقسيم البيانات إلى أجزاء صغيرة عند النقل", ans: true,  exp: "صواب — تعريف الحزمة بالضبط." },
+    { q: "من مزايا تبديل الدوائر أنه يمكن استخدام الخط مع الآخرين في نفس الوقت", ans: false, exp: "خطأ — في تبديل الدوائر الخط يكون محجوزاً لطرفين فقط." },
+  ],
+  m1_mc: [
+    { q: "الشبكة التي تربط شبكات LAN و WAN على نطاق عالمي تسمى:", opts:["الخادم الوكيل","الإنترنت","المحول","شبكة المنطقة المحلية"], ans:1, exp:"الإنترنت هو أكبر شبكة تربط كل الشبكات على مستوى العالم." },
+    { q: "الخادم الذي يعمل كوسيط للوصول إلى الإنترنت هو:", opts:["خادم الملفات","خادم البريد","الخادم الوكيل (Proxy)","خادم الطابعة"], ans:2, exp:"الخادم الوكيل (Proxy) يعمل كوسيط بينك وبين الإنترنت." },
+    { q: "الحاسوب الذي 'يطلب' خدمات من الخادم يسمى:", opts:["العميل (Client)","الموجه","الموفر","الند"], ans:0, exp:"العميل هو من يطلب الخدمة من السيرفر." },
+    { q: "طريقة الاتصال التي تنشئ مساراً ثابتاً قبل الإرسال:", opts:["تبديل الحزم","الواي فاي","تبديل الدوائر","نظام الند للند"], ans:2, exp:"تبديل الدوائر ينشئ مساراً ثابتاً بين الطرفين قبل بدء الاتصال." },
+    { q: "قد تُفقد الحزم أثناء الطريق بسبب:", opts:["عقد ISP","ازدحام الشبكة","خادم الملفات","طول الكابلات"], ans:1, exp:"ازدحام الشبكة هو السبب الأساسي لفقد الحزم." },
+    { q: "جهاز يرحل ويعيد توجيه البيانات بين شبكات مختلفة هو:", opts:["المحول (Hub)","جهاز التوجيه (Router)","العميل","الهاتف الذكي"], ans:1, exp:"الـ Router وظيفته الأساسية توجيه البيانات بين الشبكات." },
+    { q: "الطريقة التي تكون فيها الأجهزة في علاقة متساوية هي:", opts:["العميل-الخادم","تبديل الدوائر","نظام ند إلى ند","WAN"], ans:2, exp:"في P2P كل الأجهزة متساوية وتتبادل مباشرة." },
+  ],
+  m2_tf: [
+    { q: "شبكة المعلومات والاتصالات تستخدم خطوط الاتصال لنقل المعلومات", ans: true,  exp: "صواب — هذا هو تعريفها." },
+    { q: "WAN تربط أجهزة في منطقة محدودة", ans: false, exp: "خطأ — WAN شبكة واسعة تربط مدن ودول. LAN هي التي تكون محدودة." },
+    { q: "Hub جهاز مركزي يوصل كابلات", ans: true,  exp: "صواب — هذا هو تعريف الـ Hub." },
+    { q: "File server مسؤول عن البريد الإلكتروني", ans: false, exp: "خطأ — المسؤول عن البريد هو Mail server. File server للملفات." },
+    { q: "نظام Client-Server يوفر خدمات بين خادم وعميل", ans: true,  exp: "صواب — هذا هو جوهر نظام العميل-الخادم." },
+    { q: "في Circuit Switching الخط يكون مشغولاً", ans: true,  exp: "صواب — الخط محجوز للطرفين فقط طوال الاتصال." },
+    { q: "احتمال فشل الاتصال منخفض في Packet Switching", ans: true,  exp: "صواب — يمكن إعادة إرسال الحزم الفاشلة مما يقلل الفشل الكلي." },
+    { q: "الاتصال بالكابلات يسمى Wireless", ans: false, exp: "خطأ — الكابلات = Wired. Wireless = لاسلكي (WiFi)." },
+  ],
+  m2_mc: [
+    { q: "الخادم المسؤول عن البريد الإلكتروني:", opts:["خادم الطابعة","خادم الملفات","خادم البريد","الخادم الوكيل"], ans:2, exp:"خادم البريد (Mail server) مسؤول عن إرسال واستقبال الإيميلات." },
+    { q: "طريقة الاتصال التي تعمل عبر موجات الراديو:", opts:["Wired LAN","WAN","Wireless LAN","Circuit switching"], ans:2, exp:"Wireless LAN تعمل بموجات الراديو (WiFi)." },
+    { q: "الشركة التي توفر خدمة الإنترنت:", opts:["العميل","ISP provider","الخادم","المحول"], ans:1, exp:"ISP هو مزود خدمة الإنترنت." },
+    { q: "وحدة تقسيم البيانات عند النقل:", opts:["المسار","العقد","الحزمة","الشبكة"], ans:2, exp:"الحزمة (Packet) هي وحدة تقسيم البيانات." },
+    { q: "عيب تبديل الدوائر هو:", opts:["الخط مشغول","سريع جداً","لاسلكي","بيانات مفقودة"], ans:0, exp:"الخط يكون محجوزاً ولا يُشارك مع الآخرين — هذا عيبه الأساسي." },
+    { q: "نظام يربط الأجهزة لتبادل البيانات:", opts:["خادم الطابعة","شبكة الكمبيوتر","الحزمة","العميل"], ans:1, exp:"شبكة الكمبيوتر هي النظام الذي يربط الأجهزة." },
+    { q: "الطريقة التي تقسم البيانات إلى حزم:", opts:["تبديل الدوائر","تبديل الحزم","الخادم الوكيل","الاتصال السلكي"], ans:1, exp:"تبديل الحزم (Packet Switching) يقسم البيانات لأجزاء صغيرة." },
+  ]
+};
+
+// ─── QUIZ STATE ───
+let answered = {};
+let totalAnswered = 0;
+let totalCorrect = 0;
+
+function buildQuestions(containerId, questions, type, prefix) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  questions.forEach((q, i) => {
+    const id = `${prefix}_${i}`;
+    const block = document.createElement('div');
+    block.className = 'question-block';
+    block.id = `block_${id}`;
+
+    let inner = `
+      <span class="q-type-badge ${type === 'tf' ? 'tf' : 'mc'}">${type === 'tf' ? '✅ صح / ❌ خطأ' : '🎯 اختيار'}</span>
+      <div class="q-text"><span class="q-num">${i+1}</span><span style="flex:1">${q.q}</span></div>
+    `;
+
+    if (type === 'tf') {
+      inner += `
+        <div class="options">
+          <button class="option-btn" onclick="answerTF('${id}', true, this, ${q.ans})" id="opt_${id}_t">
+            <span class="opt-letter">✅</span> صواب
+          </button>
+          <button class="option-btn" onclick="answerTF('${id}', false, this, ${q.ans})" id="opt_${id}_f">
+            <span class="opt-letter">❌</span> خطأ
+          </button>
+        </div>
+      `;
+    } else {
+      inner += `<div class="options">`;
+      const letters = ['أ','ب','ج','د'];
+      q.opts.forEach((opt, j) => {
+        inner += `
+          <button class="option-btn" onclick="answerMC('${id}', ${j}, this, ${q.ans})" id="opt_${id}_${j}">
+            <span class="opt-letter">${letters[j]}</span> ${opt}
+          </button>
+        `;
       });
-      
-      // تأثير تحريك الايموجي
-      const emojis = document.querySelectorAll('.emoji-large');
-      emojis.forEach(emoji => {
-        emoji.addEventListener('mouseenter', function() {
-          this.style.transform = 'rotate(360deg) scale(1.2)';
-          this.style.transition = 'transform 0.5s ease';
-        });
-        
-        emoji.addEventListener('mouseleave', function() {
-          this.style.transform = 'rotate(0deg) scale(1)';
-        });
-      });
-      
-      // تأثير الكتابة على البكسل
-      const pixels = document.querySelectorAll('.pixel-art');
-      pixels.forEach(pixel => {
-        pixel.addEventListener('click', function() {
-          const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#fd79a8'];
-          const randomColor = colors[Math.floor(Math.random() * colors.length)];
-          this.style.background = randomColor;
-          this.style.transform = 'scale(1.5)';
-          setTimeout(() => {
-            this.style.transform = 'scale(1)';
-          }, 300);
-        });
-      });
-      
-      // تأثيرات المهام النهائية
-      const studentTasks = document.querySelectorAll('.student-task');
-      studentTasks.forEach(task => {
-        task.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        
-        task.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
-        });
-      });
-      
-      // تأثير النقر على رابط التحويل
-      const converterLinks = document.querySelectorAll('.converter-link');
-      converterLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          this.style.transform = 'scale(0.95)';
-          setTimeout(() => {
-            this.style.transform = 'scale(1)';
-          }, 150);
-        });
-      });
-      
-      // تأثيرات بطاقات الأهمية
-      const importanceCards = document.querySelectorAll('.importance-card');
-      importanceCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-5px) scale(1.05)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
-        });
-      });
-      
-      // تأثيرات بطاقات أنظمة التشغيل
-      const osCards = document.querySelectorAll('.os-card');
-      osCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
-        });
-      });
-      
-      // تأثيرات خطوات سير العمل
-      const workflowSteps = document.querySelectorAll('.workflow-step');
-      workflowSteps.forEach(step => {
-        step.addEventListener('click', function() {
-          this.style.transform = 'translateY(-3px) scale(1.05)';
-          setTimeout(() => {
-            this.style.transform = 'translateY(0) scale(1)';
-          }, 300);
-        });
-      });
-    });
-  </script>
+      inner += `</div>`;
+    }
+
+    inner += `
+      <button class="reveal-btn" onclick="toggleReveal('${id}')">💡 عرض الإجابة</button>
+      <div class="answer-reveal" id="reveal_${id}">
+        <strong>${q.ans === true ? '✅ الإجابة: صواب' : q.ans === false ? '❌ الإجابة: خطأ' : `✅ الإجابة: ${['أ','ب','ج','د'][q.ans]}. ${q.opts[q.ans]}`}</strong><br>
+        👉 ${q.exp}
+      </div>
+    `;
+
+    block.innerHTML = inner;
+    el.appendChild(block);
+  });
+}
+
+function answerTF(id, chosen, btn, correct) {
+  if (answered[id]) return;
+  answered[id] = true;
+  const isCorrect = (chosen === correct);
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  const other = document.getElementById(chosen ? `opt_${id}_f` : `opt_${id}_t`);
+  if (other) { other.disabled = true; other.style.opacity = '0.4'; }
+  btn.disabled = true;
+  updateScore(isCorrect);
+}
+
+function answerMC(id, chosen, btn, correct) {
+  if (answered[id]) return;
+  answered[id] = true;
+  const isCorrect = (chosen === correct);
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  // disable all options
+  const parent = btn.parentElement;
+  parent.querySelectorAll('.option-btn').forEach((b, j) => {
+    b.disabled = true;
+    if (j === correct && !isCorrect) b.classList.add('correct');
+    if (j !== chosen && j !== correct) b.style.opacity = '0.4';
+  });
+  updateScore(isCorrect);
+}
+
+function toggleReveal(id) {
+  const el = document.getElementById(`reveal_${id}`);
+  el.classList.toggle('show');
+}
+
+function updateScore(correct) {
+  totalAnswered++;
+  if (correct) totalCorrect++;
+  document.getElementById('total-q').textContent = totalAnswered;
+  document.getElementById('correct-q').textContent = totalCorrect;
+  const pct = totalAnswered ? Math.round(totalCorrect/totalAnswered*100) : 0;
+  document.getElementById('score-pct').textContent = pct + '%';
+  document.getElementById('score-fill').style.width = pct + '%';
+}
+
+function resetQuiz() {
+  answered = {};
+  totalAnswered = 0;
+  totalCorrect = 0;
+  document.getElementById('total-q').textContent = '0';
+  document.getElementById('correct-q').textContent = '0';
+  document.getElementById('score-pct').textContent = '0%';
+  document.getElementById('score-fill').style.width = '0%';
+  buildAll();
+}
+
+function buildAll() {
+  buildQuestions('tf-questions-m1', data.m1_tf, 'tf', 'm1tf');
+  buildQuestions('mc-questions-m1', data.m1_mc, 'mc', 'm1mc');
+  buildQuestions('tf-questions-m2', data.m2_tf, 'tf', 'm2tf');
+  buildQuestions('mc-questions-m2', data.m2_mc, 'mc', 'm2mc');
+}
+
+buildAll();
+</script>
 </body>
 </html>
